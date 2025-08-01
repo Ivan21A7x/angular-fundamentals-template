@@ -12,11 +12,11 @@
             </div>
             <div>
                 <b>Duration: </b>
-                <span class="course-card__duration">{{ duration }} min</span>
+                <span class="course-card__duration">{{ duration | duration }}</span>
             </div>
             <div>
                 <b>Created: </b>
-                <span class="course-card__date">{{ creationDate | date: 'dd/MM/yyyy' }}</span>
+                <span class="course-card__date">{{ creationDate | customDate }}</span>
             </div>
         </div>
 

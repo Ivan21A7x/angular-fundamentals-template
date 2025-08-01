@@ -1,24 +1,43 @@
 <h2 class="text-align-center">Login</h2>
+
 <div class="app-plate">
-  <form #loginForm="ngForm">
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
     <div class="login-form">
       <div>
+        <!-- Email -->
         <div class="form__control">
           <label for="email">Email</label>
-          <!--Use the name `email` for the form control.-->
-          <input type="text" id="email" placeholder="Input text"/>
-          <span id="emailErrorMessage" class="text-danger">Email is required.</span>
+          <input type="text" id="email" name="email" placeholder="Enter your email" emailValidator required ngModel
+            #emailCtrl="ngModel" [ngClass]="{
+              'invalid-input': (submitted || emailCtrl.touched) && emailCtrl.invalid
+            }" />
+          <span class="text-danger" *ngIf="(submitted || emailCtrl.touched) && emailCtrl.errors">
+            <span *ngIf="emailCtrl.errors['required']">Email is required.</span>
+            <span *ngIf="emailCtrl.errors['invalidEmail']">Invalid email format.</span>
+          </span>
         </div>
+
+        <!-- Password with toggle -->
         <div class="form__control">
           <label for="password">Password</label>
-          <!--Use the name `password` for the form control.-->
-          <input type="password" id="password" placeholder="Input text"/>
-          <span id="passwordErrorMessage" class="text-danger">Password is required.</span>
+          <div class="password-wrapper">
+            <input id="password" name="password" placeholder="Enter your password" required ngModel appTogglePassword
+              #togglePass="togglePassword" #passwordCtrl="ngModel" [ngClass]="{
+        'invalid-input': (submitted || passwordCtrl.touched) && passwordCtrl.invalid
+      }" />
+            <fa-icon [icon]="togglePass.visible ? 'eye-slash' : 'eye'" class="toggle-password-icon"
+              (click)="togglePass.toggle()"></fa-icon>
+          </div>
+          <span class="text-danger" *ngIf="(submitted || passwordCtrl.touched) && passwordCtrl.errors?.['required']">
+            Password is required.
+          </span>
         </div>
+
       </div>
+
       <div>
         <div class="form__action">
-          <app-button></app-button>
+          <app-button [buttonText]="'Login'"></app-button>
         </div>
         <div class="form__text">
           If you don't have an account you may <strong>Registration</strong>
