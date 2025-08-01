@@ -1,17 +1,23 @@
-<!-- Replace ::text:: with your code -->
+<!-- Title -->
+<div class="title">{{ title }}</div>
 
-<div class="title">::Title::</div>
+<!-- Container -->
 <div class="course-info">
   <div class="course-info__description">
-    ::Description::
+    <div><b>Description:</b></div>
+    <p>{{ description }}</p>
   </div>
+
   <div class="course-info__info">
-    <div><b>ID: </b><span class="course-info__info-id">::id::</span></div>
-    <div><b>Duration: </b><span class="course-info__info-duration">::duration::</span></div>
-    <div><b>Created: </b><span class="course-info__info-date">::date::</span></div>
-    <div><b>Authors: </b><span class="course-info__info-authors">::authors::</span></div>
+    <div><b>ID:</b> <span class="course-info__info-id">{{ id }}</span></div>
+    <div><b>Duration:</b> <span class="course-info__info-duration">{{ duration | duration }}</span></div>
+    <div><b>Created:</b> <span class="course-info__info-date">{{ creationDate | customDate }}</span></div>
+    <div><b>Authors:</b> <span class="course-info__info-authors">{{ authors.join(', ') }}</span></div>
   </div>
+
 </div>
+
+<!-- Button -->
 <div class="navigation-block">
-  <!--Enter your code here-->
+  <app-button [buttonText]="'Back'" (click)="onBack()"></app-button>
 </div>

@@ -1,37 +1,126 @@
 @import 'src/app/shared/styles/styles';
 
 .course {
- min-width: 60vw;
+  min-width: 60vw;
+
+  h2 {
+    font-family: 'Open Sans';
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 40px;
+    color: #333E48;
+    text-transform: capitalize;
+    margin-bottom: 24px;
+  }
+
+  h3 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    color: #333E48;
+    text-transform: capitalize;
+    margin-top: 40px;
+  }
+
+  .form__control {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+    label {
+      font-family: 'Open Sans';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 20px;
+      color: #333E48;
+      margin-bottom: 4px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      background: #ffffff;
+      border: 1px solid #cfcfcf;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      height: 152px;
+    }
+
+    .text-danger {
+      color: red;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+  }
 
   &__flex {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
 
-    & input {
+    input {
       flex: 1;
     }
 
-    & app-button {
+    app-button {
       margin-left: 16px;
     }
 
-    & .course__duration {
+    .course__duration {
       margin-left: 16px;
+      font-weight: 700;
+      font-size: 16px;
+      color: #333E48;
     }
   }
 
   &__authors {
     margin-top: 8px;
     display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 
     &-item {
-      margin-right: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      input {
+        background-color: #f9f9f9;
+        border: 1px solid #cfcfcf;
+        border-radius: 4px;
+        padding: 8px;
+        width: 200px;
+      }
+
+      fa-icon {
+        cursor: pointer;
+        color: #007298;
+      }
     }
   }
 
-  &__icon {
-    margin-left: 4px;
-    cursor: pointer;
+  .separator {
+    height: 1px;
+    width: 100%;
+    background-color: #cfcfcf;
+    margin: 24px 0;
+  }
+}
+.form__action {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  gap: 16px;
+
+  app-button {
+    height: 50px;
   }
 }
