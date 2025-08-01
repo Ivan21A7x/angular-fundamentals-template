@@ -39,4 +39,10 @@
   &__single-icon {
     padding: 13px;
   }
+
+  &:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    color: #666666;
+  }
 }

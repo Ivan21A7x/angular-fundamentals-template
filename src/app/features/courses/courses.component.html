@@ -1,4 +1,19 @@
-<div class="courses-container">
-    <app-courses-list [courses]="courses" [editable]="editable" (showCourse)="onShowCourse($event)"
-        (editCourse)="onEditCourse($event)" (deleteCourse)="onDeleteCourse($event)"></app-courses-list>
-</div>
+<ng-container>
+    <form style="display: flex; flex-direction: row; gap: 20px; align-items: center;"
+        (submit)="onSearch(searchInput.value); $event.preventDefault()">
+        <input type="text" #searchInput placeholder="Search courses..." (input)="onInputChange(searchInput.value)" />
+        <app-button buttonText="Search" (click)="onSearch(searchInput.value)"></app-button>
+    </form>
+
+    <div *ngIf="isLoading$ | async">Loading courses...</div>
+
+    <div class="courses-container">
+        <!-- <app-button *ngIf="isAdmin$ | async" class="add-course-btn" buttonText="Add Course" -->
+        <app-button class="add-course-btn" buttonText="Add Course" (click)="onAddCourse()"></app-button>
+
+        <app-courses-list [courses]="(courses$ | async) || []" [editable]="true" (showCourse)="onShowCourse($event)"
+            (editCourse)="onEditCourse($event)" (deleteCourse)="onDeleteCourse($event)">
+        </app-courses-list>
+
+    </div>
+</ng-container>

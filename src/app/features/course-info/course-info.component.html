@@ -1,22 +1,27 @@
-<!-- Title -->
-<div class="title">{{ title }}</div>
+<div class="title" *ngIf="course">{{ course.title }}</div>
 
-<!-- Container -->
-<div class="course-info">
+<div class="course-info" *ngIf="course">
   <div class="course-info__description">
     <div><b>Description:</b></div>
-    <p>{{ description }}</p>
+    <p>{{ course.description }}</p>
   </div>
 
   <div class="course-info__info">
-    <div><b>ID:</b> <span class="course-info__info-id">{{ id }}</span></div>
-    <div><b>Duration:</b> <span class="course-info__info-duration">{{ duration }} min</span></div>
-    <div><b>Created:</b> <span class="course-info__info-date">{{ creationDate }}</span></div>
-    <div><b>Authors:</b> <span class="course-info__info-authors">{{ authors.join(', ') }}</span></div>
-  </div>
-</div>
+    <div><b>ID:</b> <span class="course-info__info-id">{{ course.id }}</span></div>
+    <div>
+      <b>Duration:</b>
+      <span class="course-info__info-duration">{{ course.duration | duration }}</span>
+    </div>
+    <div>
+      <b>Created:</b>
+      <span class="course-info__info-date">
+        {{ course.creationDate ? (course.creationDate | customDate) : 'Unknown' }}
+      </span>
 
-<!-- Button -->
-<div class="navigation-block">
-  <app-button [buttonText]="'Back'" (click)="onBack()"></app-button>
+    </div>
+    <div>
+      <b>Authors:</b>
+      <span class="course-info__info-authors">{{ authorNames.join(', ') }}</span>
+    </div>
+  </div>
 </div>

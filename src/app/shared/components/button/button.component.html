@@ -1,4 +1,10 @@
-<button class="app-button">
-  <fa-icon *ngIf="iconName" [icon]="['fas', iconName]"></fa-icon>
+<button [disabled]="disabled" type="submit" class="app-button">
+  <!-- PNG icon from assets/icons if provided -->
+  <img *ngIf="pngIcon" [src]="'src/assets/icons/' + pngIcon" [alt]="pngIcon" class="button-icon" />
+
+  <!-- FontAwesome icon fallback -->
+  <fa-icon *ngIf="!pngIcon && iconName" [icon]="['fas', iconName]"></fa-icon>
+
+  <!-- Optional text -->
   <span *ngIf="buttonText">{{ buttonText }}</span>
 </button>

@@ -1,42 +1,57 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Course, CourseFormPayload } from '@app/features/courses/models/course.model';
+
+const API_BASE = 'http://localhost:4000';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class CoursesService {
-    getAll() {
-        // Add your code here
-    }
+  constructor(private http: HttpClient) {}
 
-    createCourse(course: any) { // replace 'any' with the required interface
-        // Add your code here
-    }
+  getAll(): Observable<Course[]> {
+    return this.http.get<{ successful: boolean; result: Course[] }>(`${API_BASE}/courses/all`)
+      .pipe(map(response => response.result));
+  }
 
-    editCourse(id: string, course: any) { // replace 'any' with the required interface
-        // Add your code here
-    }
+  getCourse(id: string): Observable<Course> {
+    return this.http
+      .get<{ successful: boolean; result: Course }>(`${API_BASE}/courses/${id}`)
+      .pipe(map(response => response.result));
+  }
 
-    getCourse(id: string) {
-        // Add your code here
-    }
 
-    deleteCourse(id: string) {
-        // Add your code here
-    }
+  createCourse(course: CourseFormPayload): Observable<any> {
+    return this.http.post(`${API_BASE}/courses/add`, course);
+  }
 
-    filterCourses(value: string) {
-        // Add your code here
-    }
+  editCourse(id: string, course: CourseFormPayload): Observable<any> {
+    return this.http.put(`${API_BASE}/courses/${id}`, course);
+  }
 
-    getAllAuthors() {
-        // Add your code here
-    }
+  deleteCourse(id: string): Observable<void> {
+    return this.http.delete<void>(`${API_BASE}/courses/${id}`);
+  }
 
-    createAuthor(name: string) {
-        // Add your code here
-    }
+  filterCourses(searchTerm: string): Observable<Course[]> {
+    return this.http.get<{ successful: boolean; result: Course[] }>(`${API_BASE}/courses/filter?text=${searchTerm}`)
+      .pipe(map(response => response.result));
+  }
 
-    getAuthorById(id: string) {
-        // Add your code here
-    }
+  getAllAuthors(): Observable<any[]> {
+    return this.http.get<{ successful: boolean; result: any[] }>(`${API_BASE}/authors/all`)
+      .pipe(map(response => response.result));
+  }
+
+
+  getAuthorById(id: string): Observable<any> {
+    return this.http.get(`${API_BASE}/authors/${id}`);
+  }
+
+  createAuthor(author: any): Observable<any> {
+    return this.http.post(`${API_BASE}/authors`, author);
+  }
 }

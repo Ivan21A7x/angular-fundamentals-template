@@ -1,34 +1,11 @@
-<app-header>
-  <span *ngIf="user">Welcome, {{ user.name }}</span>
-  <app-button *ngIf="user" (click)="logout()">Logout</app-button>
-  <app-button *ngIf="!user" (click)="login()" buttonText="Login"></app-button>
-</app-header>
+<div class="header-container">
+  <app-header>
+    <span *ngIf="user">Welcome, {{ user.name }}</span>
+    <app-button *ngIf="user" (click)="logout()">Logout</app-button>
+    <app-button *ngIf="!user" (click)="login()" buttonText="Login"></app-button>
+  </app-header>
+</div>
 
 <div class="app-root">
-  <!-- Search component -->
-  <app-search></app-search>
-
-  <!-- Info component -->
-  <app-info title="No courses found" text="Please add some courses to see them here.">
-    <app-button buttonText="New Course"></app-button>
-  </app-info>
-
-  <!-- Course Card component -->
-  <app-course-card [title]="'Angular Basics'" [description]="'Learn the core concepts of Angular framework.'"
-    [duration]="120" [authors]="['John Doe', 'Jane Smith']" [editable]="true" (clickOnShow)="onShowCourse(courseId)">
-    <app-button iconName="edit"></app-button>
-    <app-button iconName="trash"></app-button>
-  </app-course-card>
-
-  <!-- Login Form component -->
-  <app-login-form></app-login-form>
-
-  <!-- Login Form component -->
-  <app-registration-form></app-registration-form>
-
-  <!-- Login Form component -->
-  <app-course-form></app-course-form>
-
-  <!-- Modal component -->
-  <!-- <app-modal [message]="'Message'" [title]="'Title'" [okButtonText]="'Ok'" [cancelButtonText]="'Cancel'"></app-modal> -->
+  <router-outlet></router-outlet>
 </div>
