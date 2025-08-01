@@ -1,0 +1,4 @@
+<div class="courses-container">
+    <app-courses-list [courses]="courses" [editable]="editable" (showCourse)="onShowCourse($event)"
+        (editCourse)="onEditCourse($event)" (deleteCourse)="onDeleteCourse($event)"></app-courses-list>
+</div>
