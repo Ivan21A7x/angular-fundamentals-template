@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
       this.user = user;
     });
 
-    this.authFacade.loadUserFromToken(); // Carga usuario desde token si existe
+    this.authFacade.loadUserFromToken();
   }
 
   logout(): void {
