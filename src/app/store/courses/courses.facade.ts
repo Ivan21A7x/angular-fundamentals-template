@@ -48,8 +48,8 @@ export class CoursesStateFacade {
         this.store.dispatch(CoursesActions.requestSingleCourse({ id }));
     }
 
-    getFilteredCourses(searchValue: string): void {
-        this.store.dispatch(CoursesActions.requestFilteredCourses({ searchValue }));
+    getFilteredCourses(title: string): void {
+        this.store.dispatch(CoursesActions.requestFilteredCourses({ title }));
     }
 
     deleteCourse(id: string): void {

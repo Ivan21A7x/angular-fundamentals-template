@@ -40,7 +40,7 @@ export class CoursesEffects {
       withLatestFrom(this.store.select(getAllCourses)),
       map(([action, allCourses]) => {
         const filtered = allCourses.filter((course) =>
-          course.title.toLowerCase().includes(action.searchValue.toLowerCase().trim())
+          course.title.toLowerCase().includes(action.title.toLowerCase().trim())
         );
         return CoursesActions.requestFilteredCoursesSuccess({ courses: filtered });
       }),
