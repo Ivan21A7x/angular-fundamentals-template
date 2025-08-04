@@ -17,6 +17,13 @@
 
     &-title {
       font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    &-text {
+      font-size: 16px;
+      color: #333e48;
     }
   }
 
@@ -28,7 +35,31 @@
     margin-left: 50px;
 
     &-text {
-      margin-top: 16px;
+      font-size: 16px;
+      color: #333e48;
+      margin-bottom: 16px;
+
+      div {
+        margin-bottom: 8px;
+      }
     }
+
+    &-actions {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  &__duration,
+  &__date {
+    font-weight: 600;
   }
 }
