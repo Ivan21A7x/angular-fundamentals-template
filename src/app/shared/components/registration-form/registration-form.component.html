@@ -1,28 +1,59 @@
 <h2 class="text-align-center">Registration</h2>
 <div class="app-plate">
-  <div class="registration-form">
-    <div>
-      <div class="form__control">
-        <label for="name">Name</label>
-        <!--Use the name `name` for the form control.-->
-        <input type="text" id="name" placeholder="Input text"/>
-        <span id="nameErrorMessage" class="text-danger">Name is required.</span>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div class="registration-form">
+      <div>
+        <!-- Name -->
+        <div class="form__control">
+          <label for="name">Name</label>
+          <input type="text" id="name" formControlName="name" placeholder="Enter your name"
+            [ngClass]="{ 'invalid-input': (submitted || name?.touched) && name?.invalid }" />
+          <span *ngIf="(submitted || name?.touched) && name?.errors?.['required']" class="text-danger">
+            Name is required.
+          </span>
+          <span *ngIf="(submitted || name?.touched) && name?.errors?.['minlength']" class="text-danger">
+            Name must be at least 6 characters long.
+          </span>
+        </div>
+
+        <!-- Email -->
+        <div class="form__control">
+          <label for="email">Email</label>
+          <input type="text" id="email" formControlName="email" emailValidator placeholder="Enter your email"
+            [ngClass]="{ 'invalid-input': (submitted || email?.touched) && email?.invalid }" />
+          <span *ngIf="(submitted || email?.touched) && email?.errors?.['required']" class="text-danger">
+            Email is required.
+          </span>
+          <span *ngIf="(submitted || email?.touched) && email?.errors?.['emailInvalid']" class="text-danger">
+            Email is not valid.
+          </span>
+        </div>
+
+        <!-- Password with toggle -->
+        <div class="form__control">
+          <label for="password">Password</label>
+          <div style="position: relative;">
+            <input id="password" type="password" formControlName="password" placeholder="Enter your password"
+              appTogglePassword #toggle="togglePassword"
+              [ngClass]="{ 'invalid-input': (submitted || password?.touched) && password?.invalid }" />
+            <fa-icon [icon]="toggle.visible ? 'eye-slash' : 'eye'" (click)="toggle.toggle()"
+              class="password-toggle-icon"></fa-icon>
+          </div>
+          <span *ngIf="(submitted || password?.touched) && password?.errors?.['required']" class="text-danger">
+            Password is required.
+          </span>
+        </div>
       </div>
-      <div class="form__control">
-        <!--Use the name `email` for the form control.-->
-        <label for="email">Email</label>
-        <input type="text" id="email" placeholder="Input text"/>
-        <span id="emailErrorMessage" class="text-danger">Email is required.</span>
+
+      <!-- Actions -->
+      <div class="form__action">
+        <app-button [buttonText]="'Register'"></app-button>
       </div>
-      <div class="form__control">
-        <!--Use the name `password` for the form control.-->
-        <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Input text"/>
-        <span id="passwordErrorMessage" class="text-danger">Password is required.</span>
+
+      <!-- Login link -->
+      <div class="form__text">
+        Already have an account? <strong class="link" (click)="goToLogin()">Login here</strong>
       </div>
     </div>
-    <div class="form__action">
-      <app-button></app-button>
-    </div>
-  </div>
+  </form>
 </div>
